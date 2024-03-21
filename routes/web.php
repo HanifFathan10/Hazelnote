@@ -32,7 +32,7 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
         'note' => $latestNote // Mengirimkan catatan terbaru ke tampilan
     ]);
-})->middleware('auth');
+})->middleware('auth')->name('home');
 
 Route::resource('/notes', NotesController::class)->middleware('auth')->except(['index'])->names([
     'create' => 'note.create',

@@ -17,7 +17,7 @@ class NotesController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -89,7 +89,7 @@ class NotesController extends Controller
 
         Note::where('id', $note->id)->update($validatedData);
 
-        return Inertia::location(route('note.edit', ['note' => $note->id]));
+        return Inertia::location(route('notes.edit', ['note' => $note->id]));
     }
 
 
@@ -99,6 +99,6 @@ class NotesController extends Controller
     public function destroy(Note $note)
     {   
         Note::destroy($note->id);
-        return Redirect::to('/');
+        return Inertia::location(route('home'));
     }
 }

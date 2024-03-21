@@ -1,7 +1,6 @@
 import React from "react";
 
 const Priority = ({ note }) => {
-    console.log(note);
     const priority = [
         {
             priority: "option1",
@@ -39,7 +38,7 @@ const Priority = ({ note }) => {
         return (
             note.priority === data.priority && (
                 <div
-                    className={`${data.style} px-4 py-3 font-semibold`}
+                    className={`${data.style} px-4 py-3 font-jetBrains text-xs font-bold md:text-sm`}
                     key={i}
                 >
                     {data.text}

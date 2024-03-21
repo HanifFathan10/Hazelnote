@@ -17,4 +17,10 @@ ul {
 
 li {
     margin-bottom: 5px; /* Jarak antara setiap elemen li */
+    list-style-position: outside;
+}
+
+ol {
+    list-style-type: decimal; /* Jenis penomoran */
+    margin-left: 1.5em; /* Margin kiri */
 }

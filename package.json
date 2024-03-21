@@ -1,6 +1,11 @@
 {
     "private": true,
     "type": "module",
+    "license": "MIT",
+    "version": "1.0.0",
+    "name": "hazelnote",
+    "author": "Hanif fathan",
+    "description": "Hazelnote",
     "scripts": {
         "dev": "vite",
         "build": "vite build"

@@ -1,0 +1,30 @@
+[33mcommit 18a8eba66df591f5b8178384e002ce8afb3a48f4[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 87bc424 d922571
+Author: Hanif Fathan <haniffathan33@gmail.com>
+Date:   Mon Mar 18 21:55:47 2024 +0700
+
+    fix: fixing merge conflict
+
+[33mcommit 87bc424b23f0559a3b50656cbbd23e1214f3260b[m
+Author: Hanif Fathan <haniffathan33@gmail.com>
+Date:   Mon Mar 18 21:14:57 2024 +0700
+
+    feat: add CRUD hazelnote
+
+[33mcommit d9225717bf0e27f74fc79e2737ff56529fd0f431[m
+Author: Hanif Fathan <haniffathan33@gmail.com>
+Date:   Mon Mar 18 21:14:57 2024 +0700
+
+    feat: add CRUD hazelnote
+
+[33mcommit 5885b7c3643aca0fcddf2f209b83a832c2d7a2d6[m
+Author: Hanif Fathan <haniffathan33@gmail.com>
+Date:   Sat Mar 9 19:12:07 2024 +0700
+
+    Install Breeze
+
+[33mcommit e51ab9db5314c24fabd84bc5ac91a008e9efd60e[m
+Author: Hanif Fathan <haniffathan33@gmail.com>
+Date:   Sat Mar 9 19:10:18 2024 +0700
+
+    Set up a fresh Laravel app
