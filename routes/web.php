@@ -20,22 +20,31 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    $userId = Auth::user()->id;
-    
-    // Mengambil catatan terbaru untuk pengguna yang saat ini masuk
-    $latestNote = Note::where('user_id', $userId)->latest()->get();
-    
+    $userId = Auth::user()->id;    
+    $query = Note::where('user_id', $userId);
+
+    if (request('search')) {
+        $search = request('search');
+        $query->where(function($q) use ($search) {
+            $q->where('title', 'like', '%' . $search . '%')
+              ->orWhere('description', 'like', '%' . $search . '%');
+        });
+    }
+
+    $latestNote = $query->latest()->paginate(10);
+
     return Inertia::render('Homepage', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-        'note' => $latestNote // Mengirimkan catatan terbaru ke tampilan
+        'note' => $latestNote,
     ]);
 })->middleware('auth')->name('home');
 
+
 Route::resource('/notes', NotesController::class)->middleware('auth')->except(['index'])->names([
-    'create' => 'note.create',
+    'create' => 'notes.create',
     'show' => 'notes.show',
     'destroy' => 'notes.destroy',
 ]);

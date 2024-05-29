@@ -7,6 +7,7 @@ use App\Models\Note;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -44,9 +45,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function notes()
+    public function notes(): HasMany
     {
-        return $this->hasMany(Note::class);
+        return $this->hasMany(Note::class, 'user_id');
     }
 
     public function getAuthPasswordName()

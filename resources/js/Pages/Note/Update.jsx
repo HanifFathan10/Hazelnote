@@ -4,8 +4,9 @@ import { Head, router, useForm } from "@inertiajs/react";
 import React from "react";
 
 const Update = (props) => {
-    const { data, setData, put, processing, reset } = useForm({
+    const { data, setData, patch, processing, reset } = useForm({
         title: props.note.title,
+        slug: props.note.slug,
         priority: props.note.priority,
         description: props.note.description,
     });
@@ -14,15 +15,16 @@ const Update = (props) => {
         e.preventDefault();
 
         try {
-            put(route("notes.update", { note: props.note.id }), {
+            patch(route("notes.update", { note: props.note.id }), {
                 preserveScroll: true,
-                onSuccess: () => router.visit("/"),
+                onSuccess: (window.location.href = "/"),
             });
             reset();
         } catch (error) {
             console.log("Error :", error);
         }
     };
+
     return (
         <>
             <Head title={props.title} key="1" />

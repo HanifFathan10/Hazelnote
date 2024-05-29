@@ -1,6 +1,6 @@
 import NoteForm from "@/Components/NoteForm";
 import { NoteLayout } from "@/Layouts/NoteLayout";
-import { Head, router, useForm } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import React from "react";
 
 const Create = (props) => {
@@ -13,15 +13,8 @@ const Create = (props) => {
     const submit = (e) => {
         e.preventDefault();
 
-        try {
-            post(route("notes.store"), {
-                preserveScroll: true,
-                onSuccess: () => router.visit("/"),
-            });
-            reset();
-        } catch (error) {
-            console.log("Error :", error);
-        }
+        post(route("notes.store"));
+        reset();
     };
 
     return (

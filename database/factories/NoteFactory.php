@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,13 +18,12 @@ class NoteFactory extends Factory
      */
     public function definition(): array
     {
-        $users = User::all();
-        $randomUserId = $users->random()->id;
         return [
-            "title" => fake()->title(),
-            "description" => fake()->paragraph(2, true),
-            "priority" => fake()->sentence(),
-            "user_id" => $randomUserId
+            "title" => fake()->sentence(5),
+            "slug" => Str::slug(fake()->sentence(2, true)),
+            "description" => fake()->realText(),
+            "priority" => fake()->sentence(2, true),
+            "user_id" => User::factory()
         ];
     }
 }

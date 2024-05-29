@@ -1,6 +1,6 @@
 import { useDate } from "@/Hooks/useDate";
 import { Editor } from "@tinymce/tinymce-react";
-import React, { Suspense } from "react";
+import React, { useState } from "react";
 
 const NoteForm = ({
     submit,
@@ -15,9 +15,10 @@ const NoteForm = ({
         return <div className="skeleton h-56 w-full" />;
     }
 
-    const handleEditorChange = (content, editor) => {
+    const handleEditorChange = (content) => {
         setData("description", content);
     };
+
     return (
         <form
             onSubmit={submit}
@@ -27,10 +28,12 @@ const NoteForm = ({
             <h1 className="mb-4 text-xl font-semibold text-white">
                 {useDate()}
             </h1>
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex max-md:flex-col md:gap-3">
                 <label className="form-control mb-3 w-full max-w-xs">
                     <div className="label">
-                        <span className="label-text">Task today</span>
+                        <span className="label-text font-bold tracking-tight">
+                            Task today
+                        </span>
                     </div>
                     <input
                         type="text"
@@ -47,7 +50,28 @@ const NoteForm = ({
 
                 <label className="form-control mb-3 w-full max-w-xs">
                     <div className="label">
-                        <span className="label-text">Priority</span>
+                        <span className="label-text font-bold tracking-tight">
+                            Slug
+                        </span>
+                    </div>
+                    <input
+                        type="text"
+                        id="slug"
+                        name="slug"
+                        value={data.slug}
+                        placeholder="insert your slug here"
+                        className="md:stext-base input input-bordered w-full max-w-xs text-sm placeholder:text-sm"
+                        onChange={(e) => setData("slug", e.target.value)}
+                        required
+                    />
+                    {errors.slug && <div>{errors.slug}</div>}
+                </label>
+
+                <label className="form-control mb-3 w-full max-w-xs">
+                    <div className="label">
+                        <span className="label-text font-bold tracking-tight">
+                            Priority
+                        </span>
                     </div>
                     <select
                         className="select select-bordered w-full max-w-xs text-xs md:text-sm"
@@ -56,6 +80,7 @@ const NoteForm = ({
                         onChange={(e) => setData("priority", e.target.value)}
                         required
                     >
+                        <option>Select your priority</option>
                         <option value="option1">one day task Easy</option>
                         <option value="option2">one day task Normal</option>
                         <option value="option3">one day task Hard</option>
@@ -66,8 +91,7 @@ const NoteForm = ({
                     {errors.priority && <div>{errors.priority}</div>}
                 </label>
             </div>
-
-            <Suspense fallback={<SkeletonEditor />}>
+            {(
                 <Editor
                     apiKey={tinyMce}
                     value={data.description}
@@ -130,14 +154,14 @@ const NoteForm = ({
                         toolbar:
                             "undo redo | aidialog aishortcuts | blocks fontsizeinput | bold italic | align numlist bullist | link image | table media pageembed | lineheight  outdent indent | strikethrough forecolor backcolor formatpainter removeformat | charmap emoticons checklist | code fullscreen preview | save print export | pagebreak anchor codesample footnotes mergetags | addtemplate inserttemplate | addcomment showcomments | ltr rtl casechange | spellcheckdialog a11ycheck",
                         content_style:
-                            "body { font-family: 'Plus Jakarta Sans', sans-serif; font-size:14px; } h1,h2,h3,h4,h5,h6,p { margin: 0 }",
+                            "body { font-family: 'Plus Jakarta Sans', sans-serif; font-size:14px; } h1,h2,h3,h4,h5,h6,p { margin: 0; } ul { margin-top: 0; margin-bottom: 0; }",
                         menubar:
                             "file edit view insert format tools table help",
                         autosave_ask_before_unload: true,
                         indent_use_margin: true,
                     }}
                 />
-            </Suspense>
+            ) ?? <SkeletonEditor />}
             {errors.description && <div>{errors.description}</div>}
             <button
                 className={`btn btn-outline btn-success mt-3 ${

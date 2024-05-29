@@ -21,9 +21,9 @@ const Navbar = ({ auth }) => {
     };
 
     return (
-        <div className="navbar mx-auto max-w-[1536px] bg-primary">
+        <div className="navbar sticky left-0 top-0 z-[9999] mx-auto max-w-[1536px] bg-primary px-4 md:px-6">
             <div className="flex-1">
-                <Link className="px-6 font-jetBrains text-xl" href="/">
+                <Link className="font-jetBrains text-xl" href="/">
                     Hazelnote
                 </Link>
             </div>
@@ -68,33 +68,34 @@ const Navbar = ({ auth }) => {
                             >
                                 Logout
                             </button>
-                            <dialog
-                                id="my_modal_5"
-                                className="modal modal-bottom flex items-center justify-center sm:modal-middle"
-                            >
-                                <div className="modal-box">
-                                    <h3 className="text-lg font-bold text-error">
-                                        Stop!!
-                                    </h3>
-                                    <p className="py-4">Yakin mau logout?</p>
-                                    <div className="modal-action">
-                                        <form method="dialog">
-                                            <button
-                                                className="btn btn-error"
-                                                onClick={handleLogout}
-                                            >
-                                                Logout
-                                            </button>
-                                        </form>
-                                        <form method="dialog">
-                                            <button className="btn">
-                                                Cancel
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </dialog>
                         </li>
+                        <dialog
+                            id="my_modal_5"
+                            className="modal modal-bottom flex items-center justify-center sm:modal-middle"
+                        >
+                            <div className="modal-box">
+                                <h3 className="text-lg font-bold text-error">
+                                    Logout
+                                </h3>
+                                <p className="py-4">Yakin mau logout?</p>
+                                <div className="modal-action">
+                                    <form method="dialog">
+                                        <button
+                                            className="btn btn-error"
+                                            onClick={handleLogout}
+                                        >
+                                            Logout
+                                        </button>
+                                    </form>
+                                    <form
+                                        method="dialog"
+                                        className="modal-backdrop"
+                                    >
+                                        <button className="btn">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </dialog>
                     </ul>
                 </div>
             </div>

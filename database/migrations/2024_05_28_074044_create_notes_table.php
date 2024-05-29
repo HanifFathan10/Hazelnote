@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->text('description');
             $table->string('priority');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained(table: "users", column: "id", indexName: "note_user_id");
             $table->timestamps();
         });
     }

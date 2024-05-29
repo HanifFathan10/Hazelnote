@@ -3,11 +3,11 @@ import { useDate, useTime } from "@/Hooks/useDate";
 import { Link } from "@inertiajs/react";
 import React from "react";
 
-const Task = ({ id, created_at, title, note }) => {
+const Task = ({ slug, created_at, title, note }) => {
     return (
         <div className="h-28 w-full rounded-xl bg-secondary p-4 shadow-md shadow-secondary transition duration-500 hover:translate-y-2">
             <Link
-                href={`/notes/${id}`}
+                href={`/notes/${slug}`}
                 className="flex flex-col justify-between gap-2"
             >
                 <div className="flex items-center justify-between">

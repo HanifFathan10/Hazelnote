@@ -37,6 +37,7 @@ class NotesController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
+            'slug' => 'required|unique:notes',
             'priority' => 'required',
             'description' => 'required'
         ]);
@@ -45,27 +46,29 @@ class NotesController extends Controller
 
         Note::create($validatedData);
 
-        return Inertia::location(route('note.create'));
+        return Inertia::location(route('home'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($slug)
     {
-        $note = Note::findOrFail($id);
+        $note = Note::where('slug', $slug)->first();
+
         return Inertia::render("Note/Show", [
             'title' => "Show Note",
-            'note' => $note,
-            'noteId' => $id
+            'note' => $note ? $note->toArray() : null,
+            
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Note $note)
+    public function edit($slug)
     {
+        $note = Note::where('slug', $slug)->first();
         return Inertia::render("Note/Update", [
             'title' => 'Edit',
             'note' => $note,
@@ -87,9 +90,9 @@ class NotesController extends Controller
 
         $validatedData['user_id'] = auth()->user()->id;
 
-        Note::where('id', $note->id)->update($validatedData);
+        Note::where('slug', $note->slug)->update($validatedData);
 
-        return Inertia::location(route('notes.edit', ['note' => $note->id]));
+        return Inertia::location(route('notes.edit', ['note' => $note->slug]));
     }
 
 

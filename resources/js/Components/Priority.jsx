@@ -37,12 +37,12 @@ const Priority = ({ note }) => {
     return priority.map((data, i) => {
         return (
             note.priority === data.priority && (
-                <div
-                    className={`${data.style} px-4 py-3 font-jetBrains text-xs font-bold md:text-sm`}
+                <span
+                    className={`${data.style} px-4 py-3 font-jetBrains text-xs font-bold leading-4 tracking-tighter md:text-sm`}
                     key={i}
                 >
                     {data.text}
-                </div>
+                </span>
             )
         );
     });
